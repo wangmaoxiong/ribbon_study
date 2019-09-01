@@ -1,0 +1,14 @@
+server:
+  port: 9393
+
+eureka:
+  server:
+    enable-self-preservation: false #关闭自我保护机制
+    eviction-interval-timer-in-ms: 60000 #驱逐计时器扫描失效服务间隔时间。（单位毫秒，默认 60*1000）
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/

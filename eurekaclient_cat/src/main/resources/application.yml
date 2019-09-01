@@ -1,0 +1,25 @@
+server:
+  port: 9394
+
+spring:
+  application:
+    name: eureka-client-cat  #微服务名称
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9393/eureka/ #eureka 服务器地址
+  instance:
+    prefer-ip-address: true # IP 地址代替主机名注册
+    instance-id: changSha-cat # 微服务实例id名称
+
+#EUREKA-CLIENT-FOOD ：虽然 Ribbon 脱离 Eureka 使用可以自定义标识符，但还是建议写成对方的微服务名称
+EUREKA-CLIENT-FOOD:
+  ribbon:
+    #随机规则，对 EUREKA-CLIENT-FOOD 微服务下的节点随机访问
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    listOfServers: 192.168.3.6:9395 #请求的服务地址，ip:port，多个时使用 逗号 隔开
+
+ribbon:
+  eureka:
+    enabled: false #Ribbon 禁用 Eureka，禁用后 Ribbon 自己的 *.ribbon.listOfServers 服务配置才会生效

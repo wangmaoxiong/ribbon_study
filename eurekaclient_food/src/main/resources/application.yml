@@ -1,0 +1,16 @@
+server:
+  port: 9395
+  servlet:
+    context-path: /food
+
+spring:
+  application:
+    name: eureka-client-food  #微服务名称
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9393/eureka/ #eureka 服务器地址
+  instance:
+    prefer-ip-address: true # IP 地址代替主机名注册
+    instance-id: changSha-food # 微服务实例id名称
